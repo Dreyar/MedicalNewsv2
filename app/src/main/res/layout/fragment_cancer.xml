@@ -1,0 +1,24 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/cancerFragmentMain"
+    tools:context="com.example.nikom.medicalnewsv2.CancerFragment">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="News Feed - Cancer"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:paddingTop="65dp"
+        android:id="@+id/textView" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="15dp"
+        android:id="@+id/newsListView"
+        android:layout_height="match_parent" />
+
+</RelativeLayout>
