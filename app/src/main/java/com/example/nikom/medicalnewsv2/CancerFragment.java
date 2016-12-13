@@ -41,6 +41,7 @@ public class CancerFragment extends Fragment {
 
     private List<newsItem> newsFeed = new ArrayList<>();
     View view = null;
+
     public CancerFragment() {
         // Required empty public constructor
     }
@@ -64,10 +65,14 @@ public class CancerFragment extends Fragment {
         newsItemsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                newsItem currentItem = newsFeed.get(position);
+                /*newsItem currentItem = newsFeed.get(position);
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.setData(Uri.parse(currentItem.getUrl()));
-                startActivity(i);
+                startActivity(i);*/
+                newsItem currentItem = newsFeed.get(position);
+                Intent intent = new Intent(getActivity(), detailManager.class);
+                intent.putExtra("url", currentItem.getUrl());
+                startActivity(intent);
             }
         });
     }

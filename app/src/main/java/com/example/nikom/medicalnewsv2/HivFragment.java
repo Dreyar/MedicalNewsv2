@@ -1,12 +1,14 @@
 package com.example.nikom.medicalnewsv2;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -35,6 +37,7 @@ public class HivFragment extends Fragment {
 
     View viewHiv;
     private List<newsItem> newsFeedHiv = new ArrayList<>();
+
     public HivFragment() {
         // Required empty public constructor
     }
@@ -44,11 +47,30 @@ public class HivFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        viewHiv =  inflater.inflate(R.layout.fragment_hiv, container, false);
+        viewHiv = inflater.inflate(R.layout.fragment_hiv, container, false);
 
-       newsEngine();
+        newsEngine();
+
+        addClickLister();
 
         return viewHiv;
+    }
+
+    private void addClickLister() {
+        ListView newsItemsListView = (ListView) (viewHiv.findViewById(R.id.hivListView));
+        newsItemsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                /*newsItem currentItem = newsFeed.get(position);
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(currentItem.getUrl()));
+                startActivity(i);*/
+                newsItem currentItem = newsFeedHiv.get(position);
+                Intent intent = new Intent(getActivity(), detailManager.class);
+                intent.putExtra("url", currentItem.getUrl());
+                startActivity(intent);
+            }
+        });
     }
 
     private void newsEngine() {
